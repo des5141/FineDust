@@ -8,7 +8,9 @@
   </NewExtensions>
   <sounds name="sound"/>
   <sprites name="sprites"/>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\background0</background>
+  </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
     <scripts name="Shoutbox">
@@ -60,6 +62,8 @@
     <script>scripts\scr_display_resize.gml</script>
     <script>scripts\scale_canvas.gml</script>
     <script>scripts\string_padding.gml</script>
+    <script>scripts\event.gml</script>
+    <script>scripts\widget_pin_size.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_text</font>
@@ -76,6 +80,7 @@
       <object>objects\obj_textbox</object>
       <object>objects\obj_login</object>
     </objects>
+    <object>objects\obj_system</object>
     <object>objects\obj_browser_scale</object>
     <object>objects\par_widget</object>
     <object>objects\obj_clock</object>
