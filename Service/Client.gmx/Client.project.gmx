@@ -7,7 +7,9 @@
     <extension index="0">extensions\GMS.IO (Alpha)</extension>
   </NewExtensions>
   <sounds name="sound"/>
-  <sprites name="sprites"/>
+  <sprites name="sprites">
+    <sprite>sprites\sprite0</sprite>
+  </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -26,6 +28,7 @@
       <script>scripts\gmsio_get_message.gml</script>
     </scripts>
     <script>scripts\scale_canvas.gml</script>
+    <script>scripts\scr_display_resize.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_text</font>
@@ -42,8 +45,11 @@
       <object>objects\obj_login</object>
     </objects>
     <object>objects\obj_system</object>
+    <object>objects\object7</object>
+    <object>objects\obj_browser_scale</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\room4</room>
     <room>rooms\rm_shoutbox_connect</room>
     <room>rooms\rm_shoutbox_main</room>
   </rooms>
