@@ -128,11 +128,11 @@ if (gmsio_status() == gmsio_status_connected) {
         switch (message_id) {
             case 1:
                 message_body = json_decode(message_body);
-                obj_system.timestamp = ds_map_find_value(message_body, "timestamp");
-                obj_system.pm10grade = ds_map_find_value(message_body, "pm10grade");
-                obj_system.pm10value = ds_map_find_value(message_body, "pm10value");
-                obj_system.pm25grade = ds_map_find_value(message_body, "pm25grade");
-                obj_system.pm25value = ds_map_find_value(message_body, "pm25value");
+                obj_finedust.timestamp = ds_map_find_value(message_body, "timestamp");
+                obj_finedust.pm10grade = ds_map_find_value(message_body, "pm10grade");
+                obj_finedust.pm10value = ds_map_find_value(message_body, "pm10value");
+                obj_finedust.pm25grade = ds_map_find_value(message_body, "pm25grade");
+                obj_finedust.pm25value = ds_map_find_value(message_body, "pm25value");
                 ds_map_destroy(message_body);
             break;
             

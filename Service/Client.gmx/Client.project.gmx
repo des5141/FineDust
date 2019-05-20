@@ -76,10 +76,10 @@
       <object>objects\obj_textbox</object>
       <object>objects\obj_login</object>
     </objects>
-    <object>objects\obj_system</object>
     <object>objects\obj_browser_scale</object>
     <object>objects\par_widget</object>
     <object>objects\obj_clock</object>
+    <object>objects\obj_finedust</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_init</room>

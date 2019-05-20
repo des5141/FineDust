@@ -5,10 +5,24 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>par_widget</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>604</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_inherited</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -26,65 +40,24 @@
           <argument>
             <kind>1</kind>
             <string>/// variables init
-width = 300;
-height = 150;
+area = "제주"
+name = "이도동"
+timestamp = ""
+pm10grade = -1
+pm10value = -1
+pm25grade = -1
+pm25value = -1
 
-base_point = array_create(2);
-base_position = array_create(2);
-click = false;
-over = false;
-gray = false;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="72">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// mouse event
-if(mouse_x &gt; x - width/2)and(mouse_x &lt; x + width/2)and(mouse_y &gt; y - height/2)and(mouse_y &lt; y + height/2)
-    over = true;
-else
-    over = false;
-    
-if(mouse_check_button_pressed(mb_left)) {
-    with(par_widget) {
-        depth++;
-    }
-    
-    if(over) {
-        base_position[0] = x
-        base_position[1] = y
-        base_point[0] = mouse_x
-        base_point[1] = mouse_y
-        click = true;
-        depth = 0;
-    }
-}
-
-if(mouse_check_button_released(mb_left)) {
-    click = false;
-}
-
-if(click) {
-    x = base_position[0] - (base_point[0] - mouse_x)
-    y = base_position[1] - (base_point[1] - mouse_y)
-}
+var json_data = ds_map_create();
+ds_map_add(json_data, "id", 1);
+var json_data2 = ds_map_create();
+ds_map_add(json_data2, "area", area);
+ds_map_add(json_data2, "name", name);
+ds_map_add(json_data, "msg", json_encode(json_data2));
+var body = json_encode(json_data);
+ds_map_destroy(json_data2);
+ds_map_destroy(json_data);
+gmsio_send_message(body);
 </string>
           </argument>
         </arguments>
@@ -93,6 +66,20 @@ if(click) {
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
+        <id>604</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_inherited</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+      <action>
+        <libid>1</libid>
         <id>603</id>
         <kind>7</kind>
         <userelative>0</userelative>
@@ -107,20 +94,17 @@ if(click) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_color(c_white);
-draw_rectangle(x - width/2, y - height/2, x + width/2, y + height/2, false);
-
-draw_set_color(c_black);
-draw_rectangle(x - width/2, y - height/2, x + width/2, y + height/2, true);
-
-if(over) {
-    draw_set_color(c_gray);
-    draw_rectangle(x - width/2, y - height/2, x + width/2, y + height/2, true);
-    if(click) {
-        draw_set_color(c_maroon);
-        draw_rectangle(x - width/2, y - height/2, x + width/2, y + height/2, true);
-    }
-}
+            <string>draw_set_font(fnt_text)
+draw_set_color(c_black)
+draw_text(x - width/2 + 20, y - height/2 + 20, ""
++ area + "#"
++ name + "#"
++ timestamp + "#"
++ "pm10grade : " + string(pm10grade) + "#"
++ "pm10value : " + string(pm10value) + "#"
++ "pm25grade : " + string(pm25grade) + "#"
++ "pm25value : " + string(pm25value)
+);
 </string>
           </argument>
         </arguments>
