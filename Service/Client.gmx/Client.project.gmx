@@ -7,7 +7,9 @@
     <extension index="0">extensions\GMS.IO (Alpha)</extension>
   </NewExtensions>
   <sounds name="sound"/>
-  <sprites name="sprites"/>
+  <sprites name="sprites">
+    <sprite>sprites\spr_background</sprite>
+  </sprites>
   <backgrounds name="background">
     <background>background\background0</background>
   </backgrounds>
@@ -64,6 +66,7 @@
     <script>scripts\string_padding.gml</script>
     <script>scripts\event.gml</script>
     <script>scripts\widget_pin_size.gml</script>
+    <script>scripts\col16.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_text</font>
@@ -74,22 +77,25 @@
     <objects name="GMSIO">
       <object>objects\__cobj_gmsio__</object>
     </objects>
-    <objects name="Shoutbox">
-      <object>objects\obj_controller</object>
-      <object>objects\obj_console</object>
-      <object>objects\obj_textbox</object>
-      <object>objects\obj_login</object>
-    </objects>
     <object>objects\obj_system</object>
+    <object>objects\obj_controller</object>
+    <object>objects\obj_console</object>
+    <object>objects\obj_textbox</object>
+    <object>objects\obj_login</object>
     <object>objects\obj_browser_scale</object>
     <object>objects\par_widget</object>
-    <object>objects\obj_clock</object>
     <object>objects\obj_finedust</object>
+    <object>objects\obj_clock</object>
+    <object>objects\obj_init</object>
+    <object>objects\obj_background</object>
+    <object>objects\obj_finedust_new</object>
+    <object>objects\obj_clock2</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_init</room>
     <room>rooms\rm_shoutbox_connect</room>
     <room>rooms\rm_shoutbox_main</room>
+    <room>rooms\room3</room>
   </rooms>
   <constants number="10">
     <constant name="server_ip">"127.0.0.1"</constant>

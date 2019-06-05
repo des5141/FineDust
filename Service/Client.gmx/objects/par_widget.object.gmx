@@ -110,7 +110,7 @@ alarm[11] = 1;
           <argument>
             <kind>1</kind>
             <string>/// mouse event
-if(mouse_x &gt; x - width/2)and(mouse_x &lt; x + width/2)and(mouse_y &gt; y - height/2)and(mouse_y &lt; y + height/2)
+if(mouse_x &gt; x - width/2)and(mouse_x &lt; x + width/2)and(mouse_y &gt; y - height/2 - 20)and(mouse_y &lt; y - height/2)
     over = true;
 else
     over = false;
@@ -119,11 +119,11 @@ if(mouse_check_button_pressed(mb_left)) {
     with(par_widget) {
         depth++;
     }
+    if(mouse_x &lt; x + width/2 - 5)and(y &gt; y - height/2 + 5 - 20)and(x &gt; x + width/2 - 15)and(y &lt; y - height/2 + 15 - 20)
+        instance_destroy();
     
     if(over) {
-        if(mouse_x &lt; x - width/2 + 20)and(mouse_x &gt; x - width/2)and(mouse_y &lt; y - height/2 + 20)and(mouse_y &gt; y - height/2)
-            instance_destroy();
-        else if(mouse_x &gt; x + width/2 - 20)and(mouse_x &lt; x + width/2)and(mouse_y &gt; y + height/2 - 20)and(mouse_y &lt; y + height/2) {
+        if(mouse_x &gt; x + width/2 - 20)and(mouse_x &lt; x + width/2)and(mouse_y &gt; y - height/2 - 20)and(mouse_y &lt; y - height/2) {
             scale = true;
             base_position[0] = width
             base_position[1] = height
@@ -184,23 +184,16 @@ if(click) {
             <string>draw_set_color(c_white);
 draw_rectangle(x - width/2, y - height/2, x + width/2, y + height/2, false);
 
-draw_set_color(c_black);
-
-if(click)
-    draw_set_color(c_green);
-draw_triangle(x + width/2-20, y + height/2, x + width/2, y + height/2-20, x + width/2, y + height/2, false);
-draw_set_color(c_red);
-draw_triangle(x - width/2, y - height/2+20, x - width/2+20, y - height/2, x - width/2, y - height/2, false);
-
+draw_set_color(global.iuMint);
+draw_rectangle(x- width/2, y - height/2 - 20, x + width/2, y - height/2, false);
 
 
 draw_set_color(c_black);
 draw_rectangle(x - width/2, y - height/2, x + width/2, y + height/2, true);
-if(click) {
-    draw_set_color(c_green);
-    draw_rectangle(x - width/2, y - height/2, x + width/2, y + height/2, true);
-}
+draw_rectangle(x - width/2, y - height/2, x + width/2, y - height/2 - 20, true);
 
+draw_set_color(c_red);
+draw_rectangle(x + width/2 - 5, y - height/2 + 5 - 20, x + width/2 - 15, y - height/2 + 15 - 20, false);
 </string>
           </argument>
         </arguments>
