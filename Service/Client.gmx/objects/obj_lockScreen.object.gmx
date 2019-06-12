@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-9999999</depth>
   <persistent>0</persistent>
   <parentName>par_widget</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -34,10 +34,12 @@ second = date_get_second(date);
 animation = array_create(3);
 time = current_second;
 
-x = 370/2 - 15
-y = 60 + 150/2
+x = room_width/2;
+y = room_height;
 alarm[0] = 10;
 alarm[1] = 60*60;
+
+mouse = array_create(0);
 </string>
           </argument>
         </arguments>
@@ -166,16 +168,65 @@ for(var i = 0; i &lt; 3; i++) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_font(fontClock);
+            <string>/// mouse movement
+if(mouse_check_button(mb_left)) {
+    if(mouse[0] == false) {
+        mouse[0] = true;
+        mouse[1] = y;
+        mouse[2] = mouse_y;
+    }else {
+        y = mouse[1] - (mouse[2] - mouse_y);
+    }
+}else{
+    mouse[0] = false;
+    if (y &lt; room_height/2 + 150) {
+        y += (0 - y)/8;    
+    }else {
+        y += (room_height - y)/8;    
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// draw
+draw_set_color(c_black);
+draw_rectangle(0, y - 800 - room_height, room_width, y - room_height, false);
+
+draw_set_color(c_white);
+draw_set_alpha( 1/room_height * y );
+draw_rectangle(0, y, room_width, y + 800, false);
+draw_set_alpha( 1 );
+
+draw_sprite(spr_lockScreen, 0, room_width/2, y);
+
+draw_set_font(fontClock);
 draw_set_color(c_white);
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
-draw_text(x - 100, y + 25 - ease_out_circ(animation[0])*50, string_padding(string(hour), 2, "0"));
-draw_text(x, y  + 25- ease_out_circ(animation[1])*50, string_padding(string(minute), 2, "0"));
-draw_text(x + 100, y + 25 - ease_out_circ(animation[2])*50, string_padding(string(second), 2, "0"));
+draw_text(x - 90, y - 370 - ease_out_circ(animation[0])*50, string_padding(string(hour), 2, "0"));
+draw_text(x, y - 370 - ease_out_circ(animation[1])*50, string_padding(string(minute), 2, "0"));
+draw_text(x + 90, y - 370 - ease_out_circ(animation[2])*50, string_padding(string(second), 2, "0"));
 
 draw_set_font(fnt_text);
-draw_text(x, y + 25, date_date_string(date));
+draw_text(x, y - 370, date_date_string(date));
+draw_text(room_width/2, y - 30, "밀어 올려 잠금 해제");
 
 draw_set_halign(fa_left);
 draw_set_valign(fa_top);

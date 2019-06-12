@@ -9,9 +9,12 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\spr_background</sprite>
+    <sprite>sprites\spr_lockScreen</sprite>
+    <sprite>sprites\spr_icon</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\background0</background>
+    <background>background\background1</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -74,22 +77,26 @@
     <font>fonts\fontClock</font>
   </fonts>
   <objects name="objects">
-    <objects name="GMSIO">
-      <object>objects\__cobj_gmsio__</object>
-    </objects>
-    <object>objects\obj_system</object>
-    <object>objects\obj_controller</object>
-    <object>objects\obj_console</object>
-    <object>objects\obj_textbox</object>
-    <object>objects\obj_login</object>
-    <object>objects\obj_browser_scale</object>
-    <object>objects\par_widget</object>
-    <object>objects\obj_finedust</object>
-    <object>objects\obj_clock</object>
     <object>objects\obj_init</object>
-    <object>objects\obj_background</object>
-    <object>objects\obj_finedust_new</object>
-    <object>objects\obj_clock2</object>
+    <objects name="Network">
+      <object>objects\__cobj_gmsio__</object>
+      <object>objects\obj_controller</object>
+    </objects>
+    <objects name="Trash">
+      <object>objects\obj_system</object>
+      <object>objects\obj_console</object>
+      <object>objects\obj_textbox</object>
+      <object>objects\obj_login</object>
+      <object>objects\obj_browser_scale</object>
+      <object>objects\par_widget</object>
+      <object>objects\obj_clock</object>
+      <object>objects\obj_background</object>
+      <object>objects\obj_finedust_new</object>
+    </objects>
+    <objects name="Phone">
+      <object>objects\obj_lockScreen</object>
+      <object>objects\obj_finedust</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_init</room>
@@ -99,7 +106,7 @@
   </rooms>
   <constants number="10">
     <constant name="server_ip">"127.0.0.1"</constant>
-    <constant name="tcp_port">5833</constant>
+    <constant name="tcp_port">5834</constant>
     <constant name="socketio_port">5883</constant>
     <constant name="insig_login_refused">0</constant>
     <constant name="insig_login_accepted">1</constant>

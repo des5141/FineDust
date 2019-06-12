@@ -1,5 +1,5 @@
 module.exports = {
-    func: (sock, string) => {
+    func: (sock, string, user_list) => {
         const fs = require('fs')
         const token = JSON.parse(fs.readFileSync("database_token.txt"))
         const mysql = require('sync-mysql');
@@ -16,13 +16,13 @@ module.exports = {
         let result = connection.query(query_string);
         console.log(result)
         if(result != null) {
-            sock.post(1, {
+            sock.post(1, JSON.stringify({
                 timestamp: result[0].time_stamp,
                 pm10grade: result[0].pm10grade,
                 pm10value: result[0].pm10value,
                 pm25grade: result[0].pm25grade,
                 pm25value: result[0].pm25value
-            })
+            }))
         }
     },
     index: 1

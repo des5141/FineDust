@@ -1,3 +1,3 @@
-module.exports = (sock) => {
-    console.log("hello")
+module.exports = (sock, user_list) => {
+    user_list.push(sock);
 }
