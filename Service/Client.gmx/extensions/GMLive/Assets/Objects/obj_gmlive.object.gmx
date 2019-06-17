@@ -4,7 +4,7 @@
   <solid>0</solid>
   <visible>-1</visible>
   <depth>0</depth>
-  <persistent>0</persistent>
+  <persistent>-1</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
@@ -25,67 +25,37 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>title[0] = ""
-title[1] = "좋음"
-title[2] = "보통"
-title[3] = "나쁨"
-title[4] = "매우 나쁨"
+            <string>global.netlog_net_script = -1;
+if (!debug_mode &amp;&amp; live_enabled) {
+    if (live_restart_if_necessary()) exit; // comment out if not using GMLiveHelper
+    var q = live_script_get_index("netlog");
+    if (q &gt;= 0) {
+        live_log_script = q;
+        global.netlog_net_script = live_script_get_index("netlog_async_net");
+        q = live_script_get_index("netlog_init");
+        if (q &gt;= 0) {
+            // lower the connection timeout so that you don't have the game
+            // pop up one minute later if you forgot to start up netlog
+            network_set_config(network_config_connect_timeout, 7000);
+            
+            // change IP/port here if you connect to remote netlog:
+            script_execute(q, "127.0.0.1", 5101);
+        }
+    }
+} else {
+    global.netlog_ready = false;
+}
+// a workaround for a GM bug where extension doesn't initialize in debug mode:
+if (!variable_global_exists("g_live_log_script")) live_preinit();
 
-description[0] = ""
-description[1] = "공기의 질이 매우 좋습니다 ㅎㅎ"
-description[2] = "실외활동에 적합한 공기 질. 민감 군: 장시간 또는 무리한 실외활동을 자제합니다. 기침이나 호흡곤란이 발생하면 천천히 안정을 취할 것을 권고합니다."
-description[3] = "공기의 질이 안좋습니다."
-description[4] = "굉장히 공기의 질이 나쁩니다. 외부로 나가지 마십시오. 죽습니다."
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// variables init
-area = "제주"
-name = "이도동"
-timestamp = ""
-pm10grade = -1
-pm10value = -1
-pm25grade = 0
-pm25value = -1
-
-var json_data = ds_map_create();
-ds_map_add(json_data, "id", 1);
-var json_data2 = ds_map_create();
-ds_map_add(json_data2, "area", area);
-ds_map_add(json_data2, "name", name);
-ds_map_add(json_data, "msg", json_encode(json_data2));
-var body = json_encode(json_data);
-ds_map_destroy(json_data2);
-ds_map_destroy(json_data);
-gmsio_send_message(body);
-
-x = room_width/2;
-y = 100;
-
-_str = -1;
+// change IP/port here if you connect to remote gmlive-server:
+live_init(1, "http://127.0.0.1:5100", "");
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="7" enumb="63">
+    <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -102,18 +72,54 @@ _str = -1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var _id = ds_map_find_value(async_load, "id");
-
-if _id == _str {
-    if(ds_map_find_value(async_load, "status")) {
-        var json_data = ds_map_create();
-        ds_map_add(json_data, "id", 2);
-        ds_map_add(json_data, "msg", ds_map_find_value(async_load, "result"));
-        var body = json_encode(json_data);
-        ds_map_destroy(json_data);
-        gmsio_send_message(body);
-    }
-}
+            <string>live_update();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="68">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>var q = global.netlog_net_script;
+if (q &gt;= 0) script_execute(q);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="62">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>live_async_http();
 </string>
           </argument>
         </arguments>
@@ -136,72 +142,12 @@ if _id == _str {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// GMLive
+            <string>/// An example
 if (live_call()) return live_result;
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>draw_set_font(fnt_text)
-draw_set_color(c_white)
-draw_set_halign(fa_left);
-draw_set_color(c_white);
-
-draw_set_alpha(0.2);
-draw_rectangle(0, 0, 300, 20, false);
-draw_set_alpha(1);
-
-draw_set_valign(fa_middle);
-draw_text(10, 10, "미세먼지");
-draw_set_valign(fa_top);
-
-draw_set_halign(fa_left);
-draw_text(10, 25, "오염 정도");
-draw_rectangle(10, 40, 290, 45, true);
-draw_rectangle(10, 40, 10 + 280/100 * pm25value, 45, false);
-draw_text(10, 65, title[pm25grade]);
-draw_set_alpha(0.5);
-draw_text_ext(10, 80, description[pm25grade], -1, 280);
-draw_set_alpha(1);
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="123">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>_str = get_string_async("알림을 입력해주세요", "");
+/*
+draw_set_color(c_blue);
+draw_text(5, 5, "Try changing something here and saving!");
+*/
 </string>
           </argument>
         </arguments>
