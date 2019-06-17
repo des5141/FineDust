@@ -38,11 +38,13 @@ function DualSocket(socket, is_tcp) {
 		}
 
 		socket.post = (signal, data) => {
+			try{
 			data = JSON.stringify({ id: signal, msg: data });
 			if (is_tcp)
 				socket.write(data);
 			else
 				socket.send(data);
+			}catch(e){}
 		}
 
 		// connect

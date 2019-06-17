@@ -142,6 +142,10 @@ if (gmsio_status() == gmsio_status_connected) {
                 global.notice = message_body;
             break;
             
+            case 3:
+                global.meal = message_body;
+            break;
+            
             default:
             
             break;
