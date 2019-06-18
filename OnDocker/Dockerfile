@@ -1,5 +1,5 @@
 # node 6을 사용
-FROM node:6
+FROM node
 
 # 모든 파일 들고오기
 COPY . .

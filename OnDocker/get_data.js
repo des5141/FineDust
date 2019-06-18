@@ -49,6 +49,7 @@ function step() {
   }, 3600000);
 }
 
-step();
 
 console.log("crawler run");
+
+step();
