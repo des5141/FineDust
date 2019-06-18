@@ -40,6 +40,7 @@ function step() {
         + `"${list[i].dataTime}"`
         + ');'
       query_string = query_string.replace(/NaN/gi, "-1");
+      connection.query(query_string);
     }
   };
 
