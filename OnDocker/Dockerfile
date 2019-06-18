@@ -8,9 +8,6 @@ COPY . .
 RUN npm install sync-request sync-mysql urlencode
 RUN npm install -g forever
 
-# 3000포트 열기
-EXPOSE 3000
-
 # 컨테이너 부팅 후 실행
 CMD ["forever", "get_data.js"] 
 
