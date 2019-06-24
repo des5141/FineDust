@@ -218,6 +218,7 @@
     <extension index="3">extensions\netlog</extension>
   </NewExtensions>
   <sounds name="sound"/>
+<<<<<<< HEAD
   <sprites name="sprites">
     <sprite>sprites\spr_background</sprite>
     <sprite>sprites\spr_lockScreen</sprite>
@@ -229,6 +230,10 @@
     <background>background\background0</background>
     <background>background\background1</background>
   </backgrounds>
+=======
+  <sprites name="sprites"/>
+  <backgrounds name="background"/>
+>>>>>>> parent of 8a0a692... resize, remove window function added
   <paths name="paths"/>
   <scripts name="scripts">
     <scripts name="Shoutbox">
@@ -280,9 +285,12 @@
     <script>scripts\scr_display_resize.gml</script>
     <script>scripts\scale_canvas.gml</script>
     <script>scripts\string_padding.gml</script>
+<<<<<<< HEAD
     <script>scripts\event.gml</script>
     <script>scripts\widget_pin_size.gml</script>
     <script>scripts\col16.gml</script>
+=======
+>>>>>>> parent of 8a0a692... resize, remove window function added
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_text</font>
@@ -311,7 +319,14 @@
       <object>objects\obj_finedust</object>
       <object>objects\obj_back</object>
     </objects>
+<<<<<<< HEAD
     <object>objects\obj_gmlive</object>
+=======
+    <object>objects\obj_browser_scale</object>
+    <object>objects\par_widget</object>
+    <object>objects\obj_clock</object>
+    <object>objects\obj_finedust</object>
+>>>>>>> parent of 8a0a692... resize, remove window function added
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_init</room>

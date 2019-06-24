@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-1</depth>
+  <depth>0</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -25,89 +25,24 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// variable init
-over = false;
-click = false;
+            <string>area = "제주"
+name = "이도동"
+timestamp = ""
+pm10grade = -1
+pm10value = -1
+pm25grade = -1
+pm25value = -1
 
-list[0] = "왼쪽 정렬";
-list[1] = "새 창 열기";
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// widget list
-global.widget_list = ds_list_create();
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="72">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if(mouse_x &gt; room_width-170)and(mouse_x &lt; room_width-20)and(mouse_y &gt; room_height-70)and(mouse_y &lt; room_height-20)
-    over = true;
-else
-    over = false;
-
-if(mouse_check_button_released(mb_left)) {  
-    click = false;
-
-    if(over) {
-        click = true;
-    }
-}
-
-if(mouse_check_button_pressed(mb_left)) {
-    if(click) {
-        for(var i = 0; i &lt; array_length_1d(list); i++) {
-            if(mouse_x &gt; room_width-170)and(mouse_x &lt; room_width-20)and(mouse_y &gt; room_height-70-((i+1)*60)and(mouse_y &lt; room_height-20-((i+1)*60))){
-                event(i);
-            }
-        }
-        
-        if(mouse_x &gt; room_width-170)and(mouse_x &lt; room_width-20)and(mouse_y &gt; room_height-70)and(mouse_y &lt; room_height-20) {
-            click = false;
-            over = false;   
-        }
-    }
-}
-
-if(mouse_check_button(mb_left)) {
-
-}
-
-
+var json_data = ds_map_create();
+ds_map_add(json_data, "id", 1);
+var json_data2 = ds_map_create();
+ds_map_add(json_data2, "area", area);
+ds_map_add(json_data2, "name", name);
+ds_map_add(json_data, "msg", json_encode(json_data2));
+var body = json_encode(json_data);
+ds_map_destroy(json_data2);
+ds_map_destroy(json_data);
+gmsio_send_message(body);
 </string>
           </argument>
         </arguments>
@@ -130,30 +65,17 @@ if(mouse_check_button(mb_left)) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_color(c_white);
-draw_rectangle(room_width - 170, room_height - 70, room_width - 20, room_height - 20, false);
-draw_set_color(c_black);
-draw_rectangle(room_width - 170, room_height - 70, room_width - 20, room_height - 20, true);
-
-draw_set_halign(fa_center);
-draw_set_valign(fa_middle);
-
-draw_set_font(fnt_text);
-
-if(click) {
-    for(var i = 0; i &lt; array_length_1d(list); i++) {
-        draw_set_color(c_white);
-        draw_rectangle(room_width - 170, room_height - 70 - ((i+1)*60), room_width - 20, room_height - 20 - ((i+1)*60), false);
-        draw_set_color(c_black);
-        draw_rectangle(room_width - 170, room_height - 70 - ((i+1)*60), room_width - 20, room_height - 20 - ((i+1)*60), true);
-        draw_text(room_width-20-75, room_height-20-25 - (i+1)*60, list[i]);
-    }
-}
-
-draw_text(room_width-20-75, room_height-20-25, "설정");
-
-draw_set_halign(fa_left);
-draw_set_valign(fa_top);
+            <string>draw_set_font(fnt_text)
+draw_set_color(c_black)
+draw_text(50, 50, ""
++ area + "#"
++ name + "#"
++ timestamp + "#"
++ "pm10grade : " + string(pm10grade) + "#"
++ "pm10value : " + string(pm10value) + "#"
++ "pm25grade : " + string(pm25grade) + "#"
++ "pm25value : " + string(pm25value)
+);
 </string>
           </argument>
         </arguments>
