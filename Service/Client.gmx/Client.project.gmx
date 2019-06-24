@@ -219,6 +219,7 @@
   </NewExtensions>
   <sounds name="sound"/>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <sprites name="sprites">
     <sprite>sprites\spr_background</sprite>
     <sprite>sprites\spr_lockScreen</sprite>
@@ -230,6 +231,10 @@
     <background>background\background0</background>
     <background>background\background1</background>
   </backgrounds>
+=======
+  <sprites name="sprites"/>
+  <backgrounds name="background"/>
+>>>>>>> parent of 8a0a692... resize, remove window function added
 =======
   <sprites name="sprites"/>
   <backgrounds name="background"/>
@@ -286,9 +291,12 @@
     <script>scripts\scale_canvas.gml</script>
     <script>scripts\string_padding.gml</script>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <script>scripts\event.gml</script>
     <script>scripts\widget_pin_size.gml</script>
     <script>scripts\col16.gml</script>
+=======
+>>>>>>> parent of 8a0a692... resize, remove window function added
 =======
 >>>>>>> parent of 8a0a692... resize, remove window function added
   </scripts>
@@ -320,8 +328,11 @@
       <object>objects\obj_back</object>
     </objects>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <object>objects\obj_gmlive</object>
 =======
+=======
+>>>>>>> parent of 8a0a692... resize, remove window function added
     <object>objects\obj_browser_scale</object>
     <object>objects\par_widget</object>
     <object>objects\obj_clock</object>

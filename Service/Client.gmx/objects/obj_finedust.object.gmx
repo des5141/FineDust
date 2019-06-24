@@ -118,6 +118,7 @@ gmsio_send_message(body);
         </arguments>
       </action>
 <<<<<<< HEAD
+<<<<<<< HEAD
     </event>
     <event eventtype="7" enumb="63">
       <action>
@@ -152,6 +153,8 @@ if _id == _str {
           </argument>
         </arguments>
       </action>
+=======
+>>>>>>> parent of 8a0a692... resize, remove window function added
 =======
 >>>>>>> parent of 8a0a692... resize, remove window function added
     </event>

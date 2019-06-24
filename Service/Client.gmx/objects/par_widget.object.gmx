@@ -71,6 +71,7 @@ if(mouse_check_button_pressed(mb_left)) {
     
     if(over) {
 <<<<<<< HEAD
+<<<<<<< HEAD
         if(mouse_x &gt; x + width/2 - 20)and(mouse_x &lt; x + width/2)and(mouse_y &gt; y - height/2 - 20)and(mouse_y &lt; y - height/2) {
             scale = true;
             base_position[0] = width
@@ -87,10 +88,15 @@ if(mouse_check_button_pressed(mb_left)) {
             base_point[1] = mouse_y
         }
 =======
+=======
+>>>>>>> parent of 8a0a692... resize, remove window function added
         base_position[0] = x
         base_position[1] = y
         base_point[0] = mouse_x
         base_point[1] = mouse_y
+<<<<<<< HEAD
+>>>>>>> parent of 8a0a692... resize, remove window function added
+=======
 >>>>>>> parent of 8a0a692... resize, remove window function added
         click = true;
         depth = 0;
@@ -131,6 +137,7 @@ if(click) {
 draw_rectangle(x - width/2, y - height/2, x + width/2, y + height/2, false);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 draw_set_color(global.iuMint);
 draw_rectangle(x- width/2, y - height/2 - 20, x + width/2, y - height/2, false);
 
@@ -142,6 +149,8 @@ draw_rectangle(x - width/2, y - height/2, x + width/2, y - height/2 - 20, true);
 draw_set_color(c_red);
 draw_rectangle(x + width/2 - 5, y - height/2 + 5 - 20, x + width/2 - 15, y - height/2 + 15 - 20, false);
 =======
+=======
+>>>>>>> parent of 8a0a692... resize, remove window function added
 draw_set_color(c_black);
 draw_rectangle(x - width/2, y - height/2, x + width/2, y + height/2, true);
 
@@ -153,6 +162,9 @@ if(over) {
         draw_rectangle(x - width/2, y - height/2, x + width/2, y + height/2, true);
     }
 }
+<<<<<<< HEAD
+>>>>>>> parent of 8a0a692... resize, remove window function added
+=======
 >>>>>>> parent of 8a0a692... resize, remove window function added
 </string>
           </argument>
