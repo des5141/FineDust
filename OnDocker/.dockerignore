@@ -1,5 +1,0 @@
-node_modules/
-Dockerbuild.bat
-
-# md 파일은 필요없으니 지워서 용량을 지운다
-*.md

@@ -1,10 +1,8 @@
 // TODO: Make modules
 let tcp_server = require('net').createServer();
 let sio_proxy = require('http').createServer();
-let sio_server = require('socket.io').listen(sio_proxy);
-sio_server.set('log level', 0);
-
-let user_list = new Array();
+	let sio_server = require('socket.io').listen(sio_proxy);
+	sio_server.set('log level', 0);
 
 // TODO: Variables init
 let signal_event = new Array();
@@ -26,36 +24,32 @@ sio_server.sockets.on('connection', function (sock) {
 
 // ? Function
 function DualSocket(socket, is_tcp) {
-	try{
-		if (is_tcp) type = 'data'; else type = 'message';
-		socket.on(type, (data) => {
-			data = JSON.parse(data);
-			signal_event[data.id](socket, data.msg, user_list);
-		});
+	if (is_tcp) type = 'data'; else type = 'message';
+	socket.on(type, (data) => {
+		data = JSON.parse(data);
+		signal_event[data.id](socket, data.msg);
+	});
 
-		function close(func) {
-			if (is_tcp) socket.on('close', func); else socket.on('disconnect', func);
-		}
+	function close(func) {
+		if (is_tcp) socket.on('close', func); else socket.on('disconnect', func);
+	}
 
-		socket.post = (signal, data) => {
-			try{
-			data = JSON.stringify({ id: signal, msg: data });
-			if (is_tcp)
-				socket.write(data);
-			else
-				socket.send(data);
-			}catch(e){}
-		}
+	socket.post = (signal, data) => {
+		data = JSON.stringify({ id: signal, msg: JSON.stringify(data) });
+		if (is_tcp)
+			socket.write(data);
+		else
+			socket.send(data);
+	}
 
-		// connect
-		connect_event(socket, user_list);
+	// connect
+	connect_event(socket);
 
-		return {
-			socket: socket,
-			is_tcp: is_tcp,
-			close: close
-		};
-	}catch(e){console.log(e)}
+	return {
+		socket: socket,
+		is_tcp: is_tcp,
+		close: close
+	};
 }
 
 // ? Import Signal Event
@@ -65,13 +59,13 @@ function import_script(dir) {
 	let ev = fs.readdirSync(dir);
 	for (let i = 0; i < ev.length; i++) {
 		let file = ev[i];
-		if (file.replace(/.*\./gi, "") == "js") {
+		if(file.replace(/.*\./gi, "") == "js") {
 			let temp = (require(`../${dir}/${ev[i]}`));
 			signal_event[temp.index] = temp.func;
 			console.log(`   load - ../${dir}/${ev[i]}`.replace("../", ""));
 		}
 
-		if (file.match(/.*\./gi) == null) import_script(dir + "/" + ev[i]);
+		if(file.match(/.*\./gi) == null) import_script(dir + "/" + ev[i]);
 	}
 }
 import_script("Event")
