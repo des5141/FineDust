@@ -1,2 +1,2 @@
 @echo off
-npm install
+npm install socket.io@0.9.18
